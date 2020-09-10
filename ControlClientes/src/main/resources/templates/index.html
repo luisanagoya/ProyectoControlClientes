@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="layaut/plantilla :: head">
+        <title>TODO supply a title</title>
+        
+    </head >
+    <body>
+        <header th:replace="layaut/plantilla :: header"></header>
+        <section th:replace="layaut/botonesAgregar :: botonesAgregar"></section>
+       <!-- <section th:replace="layout/agregarClientes :: agregarClientes"></section>-->
+        <section th:replace="layaut/listadoClientes :: listadoClientes"></section>
+       
+        <footer th:replace="layaut/plantilla :: footer"> </footer>
+        
+        
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/agregar}">[[#{persona.crear}]]</a>
+        
+        <div th:if="${personas != null and !personas.empty}">
+        <table border="1" >
+            <tr>
+            <th th:text="#{persona.nombre}"></th> 
+            <th th:text="#{persona.apellido}"></th> 
+            <th th:text="#{persona.email}"></th> 
+            <th th:text="#{persona.email}"></th> 
+            <th sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+            </tr>
+            
+            <tr th:each="persona : ${personas}">
+                
+             <td th:text="${persona.nombre}"> Mostrar Nombre></td>
+        
+            <td th:text="${persona.apellido}"> Mostrar Apellido</td>
+        
+            <td th:text="${persona.email}"> Mostrar Email</td>
+        
+            <td th:text="${persona.telefono}"> Mostrar Telefono</td>
+            
+            <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/editar/} + ${persona.idPersona}" th:text="Editar" /></td>
+             <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/eliminar/} + ${persona.idPersona}" th:text="Eliminar" /></td>
+            
+            </tr>
+        </table>
+        </div>
+        <div th:if="${personas == null or personas.empty}">
+            La lista de personas esta vacia!
+        </div>
+        
+    </body>
+</html>
