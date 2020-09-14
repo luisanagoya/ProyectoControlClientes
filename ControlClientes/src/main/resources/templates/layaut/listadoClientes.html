@@ -38,7 +38,7 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/eliminar(idPersona=${persona.idPersona})}"
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/eliminar/(idPersona=${persona.idPersona})}"
                                                     class="btn btn-dark">
                                                        <i class="fas fa-angle-double-right"></i> [[#{accion.eliminar}]]
                                                 </a>
@@ -54,21 +54,21 @@
                     </div>
                     
                     <div class="col-md-3">
-                        <div class="card text-center  bg-danger text-white mb-3">
+                        <div class="card text-center bg-danger text-white mb-3">
                             <div class="card-body">
-                                <h3 th:text="#{persona.saldoTotal}">Saldo Total</h3>
+                                <h3 th:text="#{persona.saldoTotal}">Saldo total</h3>
                                 <h4 class="display-4">
-                                    [[${new java.text.DecimalFormat('$#,##0.00').format(saldoTotal)}]]
+                                 [[${new java.text.DecimalFormat('$#,##0.00').format(saldoTotal)}]]
                                 </h4>
-                                
                             </div>
+                        </div>
                             
                         </div>
                         
                     </div>
                     
                 </div>
-            </div>
+            
         </section>
     </body>
 </html>

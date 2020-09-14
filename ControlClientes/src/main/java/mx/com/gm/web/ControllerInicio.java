@@ -19,23 +19,18 @@ public class ControllerInicio {
     @Autowired
     private PersonaService personaService;
 
-    @GetMapping("/")
-     public String inicio(Model model, @AuthenticationPrincipal User user) {
-
+     @GetMapping("/")
+    public String inicio(Model model, @AuthenticationPrincipal User user){
         var personas = personaService.listarPersona();
-
-        log.info("ejecutando el controlador tipo SpringMVC");
-        log.info("usuario que hizo login"+ user);
-
+        log.info("ejecutando el controlador Spring MVC");
+        log.info("usuario que hizo login:" + user);
         model.addAttribute("personas", personas);
-        var saldoTotal= 0D;
-        
-        for (var p : personas){
-            
+        var saldoTotal = 0D;
+        for(var p: personas){
             saldoTotal += p.getSaldo();
         }
         model.addAttribute("saldoTotal", saldoTotal);
-        model.addAttribute("totalClientes", personas.size() );
+        model.addAttribute("totalClientes", personas.size());
         return "index";
     }
 
