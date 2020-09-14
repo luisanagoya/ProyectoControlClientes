@@ -38,7 +38,7 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/eliminar/(idPersona=${persona.idPersona})}"
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/eliminar(idPersona=${persona.idPersona})}"
                                                    class="btn btn-dark">
                                                     <i class="fas fa-angle-double-right"></i> [[#{accion.eliminar}]]
                                                 </a>
@@ -48,7 +48,7 @@
                                 </table>
                             </div>  
                             <div class="text-center p-2" th:if="${personas == null or personas.empty}">
-                                <span th:text="#{persona.lista-vacia}">Lista vacía</span>
+                                <span th:text="#{persona.lista.vacia}">Lista vacía</span>
                             </div>
                         </div>
                     </div>
@@ -63,18 +63,18 @@
                             </div>
                         </div>
                         <div class="card text-center bg-success text-white mb-3">
-                        <div class="card-body">
-                            <h3 th:text="#{persona.totalClientes}">Total Clientes</h3>
-                            <h4 class="display-4">
-                                <i class="fas fa-users"></i> [[${totalClientes}]]
-                            </h4>
+                            <div class="card-body">
+                                <h3 th:text="#{persona.totalClientes}">Total Clientes</h3>
+                                <h4 class="display-4">
+                                    <i class="fas fa-users"></i> [[${totalClientes}]]
+                                </h4>
+                            </div>
                         </div>
-                    </div>
 
                     </div>
 
 
-                    
+
                 </div>
 
             </div>
