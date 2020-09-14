@@ -20,7 +20,7 @@ public class ControllerInicio {
     private PersonaService personaService;
 
     @GetMapping("/")
-    public String inicio(Model model, @AuthenticationPrincipal User user) {
+     public String inicio(Model model, @AuthenticationPrincipal User user) {
 
         var personas = personaService.listarPersona();
 
@@ -28,6 +28,14 @@ public class ControllerInicio {
         log.info("usuario que hizo login"+ user);
 
         model.addAttribute("personas", personas);
+        var saldoTotal= 0D;
+        
+        for (var p : personas){
+            
+            saldoTotal += p.getSaldo();
+        }
+        model.addAttribute("saldoTotal", saldoTotal);
+        model.addAttribute("totalClientes", personas.size() );
         return "index";
     }
 
