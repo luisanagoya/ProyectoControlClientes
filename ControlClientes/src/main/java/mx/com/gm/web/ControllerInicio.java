@@ -55,7 +55,7 @@ public class ControllerInicio {
 
     }
 
-    @GetMapping("/eliminar/{idPersona}")
+    @GetMapping("/eliminar")
     public String eliminar(Persona persona) {
         personaService.eliminar(persona);
         return "redirect:/";
